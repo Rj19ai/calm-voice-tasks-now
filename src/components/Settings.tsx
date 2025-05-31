@@ -14,6 +14,8 @@ export const Settings = ({ onClose }: SettingsProps) => {
   const [wakeWordEnabled, setWakeWordEnabled] = useState(true);
   const [voiceStyle, setVoiceStyle] = useState('friendly');
   const [darkMode, setDarkMode] = useState(false);
+  const [emotionDetection, setEmotionDetection] = useState(true);
+  const [dailySummaryTime, setDailySummaryTime] = useState('18:00');
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
@@ -50,7 +52,7 @@ export const Settings = ({ onClose }: SettingsProps) => {
               <SelectContent>
                 <SelectItem value="friendly">Friendly</SelectItem>
                 <SelectItem value="neutral">Neutral</SelectItem>
-                <SelectItem value="formal">Formal</SelectItem>
+                <SelectItem value="professional">Professional</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -64,6 +66,31 @@ export const Settings = ({ onClose }: SettingsProps) => {
             <Switch
               checked={darkMode}
               onCheckedChange={setDarkMode}
+            />
+          </div>
+
+          {/* Emotion Detection Toggle */}
+          <div className="flex items-center justify-between">
+            <div>
+              <label className="text-sm font-medium text-slate-700">Emotion Detection</label>
+              <p className="text-xs text-slate-500">Analyze voice tone for priority</p>
+            </div>
+            <Switch
+              checked={emotionDetection}
+              onCheckedChange={setEmotionDetection}
+            />
+          </div>
+
+          {/* Daily Summary Time */}
+          <div>
+            <label className="text-sm font-medium text-slate-700 block mb-2">
+              Daily Summary Time
+            </label>
+            <input
+              type="time"
+              value={dailySummaryTime}
+              onChange={(e) => setDailySummaryTime(e.target.value)}
+              className="w-full px-3 py-2 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-mint-500 focus:border-transparent"
             />
           </div>
 
